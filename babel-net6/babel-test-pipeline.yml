@@ -65,7 +65,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: 'babel-net6/babel-net6.csproj'
-    arguments: '--framework net6.0 --configuration Release --self-contained true --runtime osx-x64'
+    arguments: '--framework net6.0 --configuration Release --self-contained true --runtime osx-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true -p:PublishTrimmed=true'
 
 - task: CopyFiles@2
   inputs:

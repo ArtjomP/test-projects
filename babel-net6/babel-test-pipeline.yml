@@ -1,0 +1,72 @@
+# .NET Desktop
+# Build and run tests for .NET Desktop or Windows classic desktop solutions.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+name: $(Date:yy.MM.dd).$(Rev:r)
+
+trigger:
+- main
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+- group: EmuVariablesLibrary
+- name: DOT_NET_CORE_BUILD_VERSION
+  value: 6.x
+- name: BabelVersion
+  value: 9_8_0
+
+steps:
+ # Download secure files for Babel obfuscator and place correctly in C:\Program Files\Babel
+- task: DownloadSecureFile@1
+  name: babelDll
+  inputs:
+    secureFile: 'Babel.Build.$(BabelVersion).dll'
+
+- task: DownloadSecureFile@1
+  name: babelLicense
+  inputs:
+    secureFile: 'babel.$(BabelVersion).licenses'
+
+- task: DownloadSecureFile@1
+  name: babelExe
+  inputs:
+    secureFile: 'babel.$(BabelVersion).exe'
+
+- powershell: | 
+    New-Item -ItemType Directory -Force -Path "C:\Program Files\Babel"
+    Copy-Item -Path $(babelLicense.secureFilePath) -Destination "C:\Program Files\Babel\babel.licenses" -Force -Verbose
+    Copy-Item -Path $(babelExe.secureFilePath) -Destination "C:\Program Files\Babel\babel.exe" -Force -Verbose
+    New-Item -ItemType Directory -Force -Path "C:\Program Files\Babel\MSBuild"
+    Copy-Item -Path $(babelDll.secureFilePath) -Destination "C:\Program Files\Babel\MSBuild\Babel.Build.dll" -Force -Verbose
+  displayName: Place Babel files
+
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '$(DOT_NET_CORE_BUILD_VERSION)'
+    includePreviewVersions: true
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: 'babel-net6/babel-net6.csproj'
+    feedsToUse: 'select'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: 'babel-net6/babel-net6.csproj'
+    arguments: '--configuration Release'
+
+- task: CopyFiles@2
+  inputs:
+    Contents: '**/babel-net6.exe'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'

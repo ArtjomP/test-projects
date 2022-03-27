@@ -55,4 +55,8 @@
 
 		<Message Text="Avalonia Uses: @(IntermediateAssembly)" />
 	</Target>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\lib\lib.csproj" />
+	</ItemGroup>
 </Project>

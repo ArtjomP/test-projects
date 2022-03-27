@@ -51,20 +51,20 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
-    projects: 'babel-net6/babel-net6.csproj'
+    projects: 'babel-net6/babel-test.sln'
     feedsToUse: 'select'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: 'babel-net6/babel-net6.csproj'
+    projects: 'babel-net6/babel-test.sln'
     arguments: '--framework net6.0 --configuration Release'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: false
-    projects: 'babel-net6/babel-net6.csproj'
+    projects: 'babel-net6/babel-test.sln'
     arguments: '--framework net6.0 --configuration Release --self-contained true --runtime osx-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true -p:PublishTrimmed=true'
 
 - task: CopyFiles@2

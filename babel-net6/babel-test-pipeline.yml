@@ -64,7 +64,7 @@ steps:
   inputs:
     command: 'publish'
     projects: 'babel-net6/babel-net6.csproj'
-    arguments: '--configuration Release --self-contained true --runtime osx-x64'
+    arguments: '--ramework net6.0 --configuration Release --self-contained true --runtime osx-x64'
 
 - task: CopyFiles@2
   inputs:

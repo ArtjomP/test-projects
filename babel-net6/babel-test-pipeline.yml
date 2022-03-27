@@ -57,6 +57,12 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
+    projects: 'babel-net6/lib/lib.csproj'
+    arguments: '--framework net6.0 --configuration Release'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
     projects: 'babel-net6/babel-net6/babel-net6.csproj'
     arguments: '--framework net6.0 --configuration Release'
 

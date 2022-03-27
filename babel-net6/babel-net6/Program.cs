@@ -17,7 +17,6 @@ var fixtures = new FixtureGroup()
 
 Serialize(fixtures, "fixtures.xml");
 
-[global::System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute("Calls System.Xml.Serialization.XmlSerializer.Serialize(System.Xml.XmlWriter, object?)")]
 void Serialize<T>(T obj, String path)
 {
     var serializer = new XmlSerializer(typeof(T));

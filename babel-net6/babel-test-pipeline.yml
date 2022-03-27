@@ -64,11 +64,11 @@ steps:
   inputs:
     command: 'publish'
     projects: 'babel-net6/babel-net6.csproj'
-    arguments: '--configuration Release'
+    arguments: '--configuration Release --self-contained true --runtime osx-x64'
 
 - task: CopyFiles@2
   inputs:
-    Contents: '**/babel-net6'
+    Contents: '**/babel-net6*'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1

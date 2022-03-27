@@ -6,6 +6,9 @@
 		<RootNamespace>babel_net6</RootNamespace>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<RuntimeIdentifiers>osx-x64</RuntimeIdentifiers>
+		<PublishTrimmed>True</PublishTrimmed>
+		<SelfConained>True</SelfConained>
 	</PropertyGroup>
 
 	<UsingTask TaskName="Babel" AssemblyFile="C:\Program Files\Babel\MSBuild\Babel.Build.dll" />

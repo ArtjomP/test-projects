@@ -8,6 +8,8 @@
 		<Nullable>enable</Nullable>
 		<RuntimeIdentifiers>osx-x64</RuntimeIdentifiers>
 		<PublishTrimmed>True</PublishTrimmed>
+		<PublishReadyToRun>true</PublishReadyToRun>
+		<PublishSingleFile>true</PublishSingleFile>
 		<SelfConained>True</SelfConained>
 	</PropertyGroup>
 

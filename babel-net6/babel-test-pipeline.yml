@@ -60,6 +60,12 @@ steps:
     projects: 'babel-net6/babel-net6.csproj'
     arguments: '--configuration Release'
 
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    projects: 'babel-net6/babel-net6.csproj'
+    arguments: '--configuration Release'
+
 - task: CopyFiles@2
   inputs:
     Contents: '**/babel-net6'

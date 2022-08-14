@@ -13,7 +13,7 @@ pool:
 variables:
 - group: EmuVariablesLibrary
 - name: DOT_NET_CORE_BUILD_VERSION
-  value: 5.x
+  value: 6.x
 - name: BabelVersion
   value: 9_9_1
 
@@ -58,27 +58,27 @@ steps:
   inputs:
     command: 'build'
     projects: 'babel-net6/lib/lib.csproj'
-    arguments: '--framework net5.0 --configuration Release'
+    arguments: '--framework net6.0 --configuration Release'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
     projects: 'babel-net6/babel-net6/babel-net6.csproj'
-    arguments: '--framework net5.0 --configuration Release'
+    arguments: '--framework net6.0 --configuration Release'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: false
     projects: 'babel-net6/babel-net6/babel-net6.csproj'
-    arguments: '--framework net5.0 --configuration Release --self-contained true --runtime osx-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true -p:PublishTrimmed=true'
+    arguments: '--framework net6.0 --configuration Release --self-contained true --runtime osx-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true -p:PublishTrimmed=true'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: false
     projects: 'babel-net6/babel-net6/babel-net6.csproj'
-    arguments: '--framework net5.0 --configuration Release --self-contained true --runtime win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true -p:PublishTrimmed=true'
+    arguments: '--framework net6.0 --configuration Release --self-contained true --runtime win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true -p:PublishTrimmed=true'
 
 - task: CopyFiles@2
   inputs:

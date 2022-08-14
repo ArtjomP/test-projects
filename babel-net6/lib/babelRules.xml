@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Rules>
+	<Rule name="Serializable types" feature="default" exclude="true">
+		<Target>Fields, StaticFields, Properties</Target>
+		<Pattern><![CDATA[*]]></Pattern>
+		<HasAttribute onEnclosingType="true">
+			System.SerializableAttribute
+		</HasAttribute>
+		<Description>Do not obfuscate fields of serializable types.</Description>
+	</Rule>
+	<Rule name="state-rename" feature="renaming" exclude="true" applyToMembers="true">
+		<Pattern>FixtureGroup*</Pattern>
+		<Description>Rename All Public Symbols</Description>
+	</Rule>
+	<Rule name="serialized-models-code-generated" feature="string encryption,control flow,msil encryption,dynamic proxy,value encryption" exclude="true" applyToMembers="true">
+		<Pattern>FixtureGroup*</Pattern>
+		<HasAttribute>System.Runtime.CompilerServices.CompilerGeneratedAttribute,System.Diagnostics.DebuggerHiddenAttribute</HasAttribute>
+		<Description>Disable All Code Obfuscation For Compiler Generated Methods</Description>
+	</Rule>
+	<Rule name="models-dont-rename" feature="renaming" exclude="true" applyToMembers="true">
+		<Pattern>FixtureGroup*</Pattern>
+		<Description>Disable Renaming</Description>
+	</Rule>
+	<Rule name="Serializable types XmlArrayItem" feature="default" exclude="true">
+		<Target>Fields, StaticFields, Properties</Target>
+		<Pattern><![CDATA[*]]></Pattern>
+		<HasAttribute onEnclosingType="true">
+			System.Xml.Serialization.XmlArrayItemAttribute
+		</HasAttribute>
+		<Description>Do not obfuscate fields of serializable types.</Description>
+	</Rule>
+</Rules>

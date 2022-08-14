@@ -13,9 +13,9 @@ pool:
 variables:
 - group: EmuVariablesLibrary
 - name: DOT_NET_CORE_BUILD_VERSION
-  value: 6.x
+  value: 5.x
 - name: BabelVersion
-  value: 9_8_0
+  value: 9_9_1
 
 steps:
  # Download secure files for Babel obfuscator and place correctly in C:\Program Files\Babel

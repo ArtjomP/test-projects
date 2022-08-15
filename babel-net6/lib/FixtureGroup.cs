@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 [XmlRoot(Namespace = "", IsNullable = false)]
 public sealed record FixtureGroup
 {
-    //[Obfuscation(ApplyToMembers = true, Exclude = true)]
+    [Obfuscation(ApplyToMembers = true, Exclude = true)]
     [XmlArrayItem("n", IsNullable = false)]
     public Fader[] Faders
     {

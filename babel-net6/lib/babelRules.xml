@@ -17,7 +17,7 @@
 		<HasAttribute>System.Runtime.CompilerServices.CompilerGeneratedAttribute,System.Diagnostics.DebuggerHiddenAttribute</HasAttribute>
 		<Description>Disable All Code Obfuscation For Compiler Generated Methods</Description>
 	</Rule>
-	<Rule name="models-dont-rename" feature="renaming" exclude="true" applyToMembers="true">
+	<Rule name="models-dont-rename" feature="renaming, renaming blob" exclude="true" applyToMembers="true">
 		<Pattern>FixtureGroup*</Pattern>
 		<Description>Disable Renaming</Description>
 	</Rule>

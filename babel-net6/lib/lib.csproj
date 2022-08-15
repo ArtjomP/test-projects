@@ -7,4 +7,48 @@
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
+
+	<UsingTask TaskName="Babel" AssemblyFile="C:\Program Files\Babel\MSBuild\Babel.Build.dll" />
+	<PropertyGroup>
+		<EnableObfuscationAgent>true</EnableObfuscationAgent>
+		<VerboseLevel>2</VerboseLevel>
+		<ShowLogo>false</ShowLogo>
+		<ShowStatistics>true</ShowStatistics>
+		<GenerateDebug>true</GenerateDebug>
+
+		<ObfuscateTypes>true</ObfuscateTypes>
+		<ObfuscateEvents>true</ObfuscateEvents>
+		<ObfuscateMethods>true</ObfuscateMethods>
+		<ObfuscateProperties>true</ObfuscateProperties>
+		<ObfuscateFields>true</ObfuscateFields>
+		<ObfuscateXaml>true</ObfuscateXaml>
+		<OverloadedRenaming>true</OverloadedRenaming>
+		<FlattenNamespaces>true</FlattenNamespaces>
+		<UnicodeNormalization>false</UnicodeNormalization>
+		<VirtualFunctions>true</VirtualFunctions>
+		<ControlFlowObfuscation>token=false;underflow=false;goto=true;if=true;switch=true;case=true;true</ControlFlowObfuscation>
+		<ILIterations>3</ILIterations>
+
+		<StringEncryption>true</StringEncryption>
+		<ValueEncryption>true</ValueEncryption>
+		<DynamicProxy>false</DynamicProxy>
+		<SuppressReflection>true</SuppressReflection>
+		<ResourceEncryption>false</ResourceEncryption>
+		<MsilEncryption>false</MsilEncryption>
+		<DebuggingProtection>true</DebuggingProtection>
+		<EnumRemoval>true</EnumRemoval>
+		<DeadCodeElimination>false</DeadCodeElimination>
+		<SealClasses>false</SealClasses>
+		<Copyright>Copyright © Enttec 2022</Copyright>
+	</PropertyGroup>
+
+	<Target Name="Obfuscate" AfterTargets="AfterCompile" Condition="'$(Configuration)'=='Release'">
+
+		<Message Text="Obfuscating $(BabelInputFile) to $(IntermediateOutputPath) ..." />
+
+		<Babel InputFile="$(IntermediateOutputPath)$(TargetFileName)" OutputFile="$(IntermediateOutputPath)$(TargetFileName)" MergeAssemblies="@(MergeAssembly)" RulesFiles="@(RuleFile)" ShowLogo="$(ShowLogo)" EnableObfuscationAgent="$(EnableObfuscationAgent)" FlattenNamespaces="$(FlattenNamespaces)" UnicodeNormalization="$(UnicodeNormalization)" ObfuscateTypes="$(ObfuscateTypes)" ObfuscateEvents="$(ObfuscateEvents)" ObfuscateMethods="$(ObfuscateMethods)" ObfuscateProperties="$(ObfuscateProperties)" ObfuscateFields="$(ObfuscateFields)" ObfuscateXaml="$(ObfuscateXaml)" VirtualFunctions="$(VirtualFunctions)" OverloadedRenaming="$(OverloadedRenaming)" ControlFlowObfuscation="$(ControlFlowObfuscation)" ILIterations="$(ILIterations)" StringEncryption="$(StringEncryption)" MsilEncryption="$(MsilEncryption)" EnumRemoval="$(EnumRemoval)" DebuggingProtection="$(DebuggingProtection)" DynamicProxy="$(DynamicProxy)" ResourceEncryption="$(ResourceEncryption)" ValueEncryption="$(ValueEncryption)" SuppressReflection="$(SuppressReflection)" SealClasses="$(SealClasses)" DeadCodeElimination="$(DeadCodeElimination)" GenerateDebug="$(GenerateDebug)" VerboseLevel="$(VerboseLevel)" ShowStatistics="$(ShowStatistics)" />
+
+		<Message Text="Avalonia Uses: @(IntermediateAssembly)" />
+	</Target>
+
 </Project>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Rules>
-	<!--<Rule name="Serializable types" feature="default" exclude="true">
+	<Rule name="Serializable types" feature="default" exclude="true">
 		<Target>Fields, StaticFields, Properties</Target>
 		<Pattern><![CDATA[*]]></Pattern>
 		<HasAttribute onEnclosingType="true">
@@ -28,5 +28,5 @@
 			System.Xml.Serialization.XmlArrayItemAttribute
 		</HasAttribute>
 		<Description>Do not obfuscate fields of serializable types.</Description>
-	</Rule>-->
+	</Rule>
 </Rules>

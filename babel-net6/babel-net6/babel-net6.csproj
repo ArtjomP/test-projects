@@ -58,6 +58,10 @@
 	</Target>
 
 	<ItemGroup>
+	  <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.1" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\lib\lib.csproj" />
 	</ItemGroup>
 </Project>
